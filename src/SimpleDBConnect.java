@@ -47,15 +47,21 @@ public class SimpleDBConnect {
             resultSet = statement.executeQuery("SELECT * FROM CUSTOMERS ");
 
             // hardcoded header
-            System.out.println("School_ID\tName\t\t\tDirector");
-            System.out.println("=====\t================\t=======");
+            System.out.println("Item Number\tBike Brand\tBike Type\tSupplier\tDate Brought\tDate Brought\tPrice\tIn Stock\tAmount in Stock");
+            System.out.println("=====\t================\t============\t================\t=======");
 
             // processing returned data and printing into console
             // Step 2.D: use data from ResultSet
             while(resultSet.next()) {
-                System.out.println(resultSet.getString(3) + "\t" +
+                System.out.println(resultSet.getString(8) + "\t" +
                         resultSet.getString(1) + "\t" +
-                        resultSet.getString(2));
+                        resultSet.getString(2) + "\t" +
+                        resultSet.getString(3) + "\t" +
+                        resultSet.getString(4) + "\t" +
+                        resultSet.getString(5) + "\t" +
+                        resultSet.getString(6) + "\t" +
+                        resultSet.getString(7) + "\t" +
+                        resultSet.getString(8));
             }
 
         }
