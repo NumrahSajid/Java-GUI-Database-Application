@@ -8,14 +8,21 @@
  *
  * @author Nimra Sajid
  */
-public class UserProfile extends javax.swing.JFrame {
+public class LoginManager extends javax.swing.JFrame {
 
     /**
      * Creates new form UserProfile
      */
-    public UserProfile() {
+    public LoginManager() {
         initComponents();
     }
+    
+    
+     public LoginManager(String name) {
+        initComponents();
+    }
+     
+     
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,11 +37,9 @@ public class UserProfile extends javax.swing.JFrame {
         P_Head1 = new javax.swing.JPanel();
         heading = new javax.swing.JLabel();
         P_Left = new javax.swing.JPanel();
-        Profile = new javax.swing.JButton();
-        RentBike = new javax.swing.JButton();
-        ReturnBike = new javax.swing.JButton();
-        RentedBikes = new javax.swing.JButton();
-        ReturnedMovies = new javax.swing.JButton();
+        AddUser = new javax.swing.JButton();
+        RemoveUser = new javax.swing.JButton();
+        ViewExistingUsers = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,7 +54,7 @@ public class UserProfile extends javax.swing.JFrame {
 
         heading.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         heading.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        heading.setText("User Profile");
+        heading.setText("Manager Login");
 
         javax.swing.GroupLayout P_Head1Layout = new javax.swing.GroupLayout(P_Head1);
         P_Head1.setLayout(P_Head1Layout);
@@ -70,38 +75,24 @@ public class UserProfile extends javax.swing.JFrame {
 
         P_Left.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
-        Profile.setText("Profile");
-        Profile.addActionListener(new java.awt.event.ActionListener() {
+        AddUser.setText("Add User");
+        AddUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ProfileActionPerformed(evt);
+                AddUserActionPerformed(evt);
             }
         });
 
-        RentBike.setText("Rent a Bike");
-        RentBike.addActionListener(new java.awt.event.ActionListener() {
+        RemoveUser.setText("Remove User");
+        RemoveUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RentBikeActionPerformed(evt);
+                RemoveUserActionPerformed(evt);
             }
         });
 
-        ReturnBike.setText("Return a Bike");
-        ReturnBike.addActionListener(new java.awt.event.ActionListener() {
+        ViewExistingUsers.setText("View Existing Users");
+        ViewExistingUsers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ReturnBikeActionPerformed(evt);
-            }
-        });
-
-        RentedBikes.setText(" Bikes Currently Renting");
-        RentedBikes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RentedBikesActionPerformed(evt);
-            }
-        });
-
-        ReturnedMovies.setText("Returned Bikes");
-        ReturnedMovies.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ReturnedMoviesActionPerformed(evt);
+                ViewExistingUsersActionPerformed(evt);
             }
         });
 
@@ -112,27 +103,21 @@ public class UserProfile extends javax.swing.JFrame {
             .addGroup(P_LeftLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(P_LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Profile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(RentBike, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ReturnBike, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(RentedBikes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ReturnedMovies, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
+                    .addComponent(AddUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(RemoveUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ViewExistingUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
                 .addContainerGap())
         );
         P_LeftLayout.setVerticalGroup(
             P_LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(P_LeftLayout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addComponent(Profile)
+                .addComponent(AddUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(RentBike)
+                .addComponent(RemoveUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ReturnBike)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(RentedBikes)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ReturnedMovies)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addComponent(ViewExistingUsers)
+                .addContainerGap(113, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -171,29 +156,27 @@ public class UserProfile extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_Back_ButtonActionPerformed
 
-    private void ProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileActionPerformed
+    private void AddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddUserActionPerformed
 
          UserInfo Obj = new UserInfo();
        Obj.setVisible(true);
         
         
-    }//GEN-LAST:event_ProfileActionPerformed
+    }//GEN-LAST:event_AddUserActionPerformed
 
-    private void RentBikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RentBikeActionPerformed
+    private void RemoveUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveUserActionPerformed
 
-    }//GEN-LAST:event_RentBikeActionPerformed
+        DeleteUser Obj = new DeleteUser();
+        Obj.setVisible(true);
+        
+    }//GEN-LAST:event_RemoveUserActionPerformed
 
-    private void ReturnBikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnBikeActionPerformed
+    private void ViewExistingUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewExistingUsersActionPerformed
 
-    }//GEN-LAST:event_ReturnBikeActionPerformed
-
-    private void RentedBikesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RentedBikesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RentedBikesActionPerformed
-
-    private void ReturnedMoviesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnedMoviesActionPerformed
-
-    }//GEN-LAST:event_ReturnedMoviesActionPerformed
+           ExistingUsers Obj = new ExistingUsers();
+        Obj.setVisible(true);
+        
+    }//GEN-LAST:event_ViewExistingUsersActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,14 +214,12 @@ public class UserProfile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddUser;
     private javax.swing.JButton Back_Button;
     private javax.swing.JPanel P_Head1;
     private javax.swing.JPanel P_Left;
-    private javax.swing.JButton Profile;
-    private javax.swing.JButton RentBike;
-    private javax.swing.JButton RentedBikes;
-    private javax.swing.JButton ReturnBike;
-    private javax.swing.JButton ReturnedMovies;
+    private javax.swing.JButton RemoveUser;
+    private javax.swing.JButton ViewExistingUsers;
     private javax.swing.JLabel heading;
     // End of variables declaration//GEN-END:variables
 }

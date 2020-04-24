@@ -102,7 +102,7 @@
               <Font name="Tahoma" size="14" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="User Profile"/>
+            <Property name="text" type="java.lang.String" value="Manager Login"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -124,11 +124,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="Profile" alignment="0" max="32767" attributes="0"/>
-                      <Component id="RentBike" alignment="0" max="32767" attributes="0"/>
-                      <Component id="ReturnBike" alignment="0" max="32767" attributes="0"/>
-                      <Component id="RentedBikes" alignment="0" max="32767" attributes="0"/>
-                      <Component id="ReturnedMovies" alignment="0" pref="205" max="32767" attributes="0"/>
+                      <Component id="AddUser" alignment="0" max="32767" attributes="0"/>
+                      <Component id="RemoveUser" alignment="0" max="32767" attributes="0"/>
+                      <Component id="ViewExistingUsers" alignment="0" pref="205" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -138,59 +136,39 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                  <Component id="Profile" min="-2" max="-2" attributes="0"/>
+                  <Component id="AddUser" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="RentBike" min="-2" max="-2" attributes="0"/>
+                  <Component id="RemoveUser" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="ReturnBike" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="RentedBikes" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="ReturnedMovies" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="55" max="32767" attributes="0"/>
+                  <Component id="ViewExistingUsers" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="113" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="Profile">
+        <Component class="javax.swing.JButton" name="AddUser">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Profile"/>
+            <Property name="text" type="java.lang.String" value="Add User"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ProfileActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddUserActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="RentBike">
+        <Component class="javax.swing.JButton" name="RemoveUser">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Rent a Bike"/>
+            <Property name="text" type="java.lang.String" value="Remove User"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RentBikeActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RemoveUserActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="ReturnBike">
+        <Component class="javax.swing.JButton" name="ViewExistingUsers">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Return a Bike"/>
+            <Property name="text" type="java.lang.String" value="View Existing Users"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ReturnBikeActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="RentedBikes">
-          <Properties>
-            <Property name="text" type="java.lang.String" value=" Bikes Currently Renting"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RentedBikesActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="ReturnedMovies">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Returned Bikes"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ReturnedMoviesActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ViewExistingUsersActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
