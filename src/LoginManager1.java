@@ -134,7 +134,7 @@ public class LoginManager1 extends javax.swing.JFrame {
           
       } else if (username.equals(username) != password.equals(password)){
           
-          JOptionPane.showMessageDialog(rootPane, "Invalid Login");
+          JOptionPane.showMessageDialog(rootPane, "Invalid Login Details");
           
       }
       
