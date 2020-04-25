@@ -20,7 +20,7 @@ public class SimpleDBConnect {
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
-        String msAccDB = "..//Bike_Shop.accdb"; // path to the DB file
+        String msAccDB = "..//BikeShop.accdb"; // path to the DB file
         String dbURL = "jdbc:ucanaccess://" + msAccDB;
         
        
@@ -44,16 +44,19 @@ public class SimpleDBConnect {
             statement = connection.createStatement();
 
             // Step 2.C: Executing SQL &amp; retrieve data into ResultSet
-            resultSet = statement.executeQuery("SELECT * FROM CUSTOMERS ");
+            resultSet = statement.executeQuery("SELECT * FROM MANAGERLOGIN ");
+            
+                System.out.println("ID\tUsername\t\tPassword");
+
 
             // hardcoded header
-            System.out.println("Item Number\tBike Brand\tBike Type\tSupplier\tDate Brought\tDate Brought\tPrice\tIn Stock\tAmount in Stock");
-            System.out.println("=====\t================\t============\t================\t=======");
+         //   System.out.println("Item Number\tBike Brand\tBike Type\tSupplier\tDate Brought\tDate Brought\tPrice\tIn Stock\tAmount in Stock");
+         //   System.out.println("=====\t================\t============\t================\t=======\t=======");
 
             // processing returned data and printing into console
             // Step 2.D: use data from ResultSet
             while(resultSet.next()) {
-                System.out.println(resultSet.getString(8) + "\t" +
+             /*   System.out.println(resultSet.getString(8) + "\t" +
                         resultSet.getString(1) + "\t" +
                         resultSet.getString(2) + "\t" +
                         resultSet.getString(3) + "\t" +
@@ -61,7 +64,13 @@ public class SimpleDBConnect {
                         resultSet.getString(5) + "\t" +
                         resultSet.getString(6) + "\t" +
                         resultSet.getString(7) + "\t" +
-                        resultSet.getString(8));
+                        resultSet.getString(8)); */
+                
+                System.out.println(
+                        resultSet.getString(1) + "\t" +
+                        resultSet.getString(2) + "\t\t" +
+                        resultSet.getString(3)); 
+                        
             }
 
         }

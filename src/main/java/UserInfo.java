@@ -4,6 +4,11 @@
  * and open the template in the editor.
  */
 
+  import java.sql.Connection;
+  import java.sql.PreparedStatement;
+  import java.sql.ResultSet;
+
+
 /**
  *
  * @author Nimra Sajid
@@ -13,9 +18,28 @@ public class UserInfo extends javax.swing.JFrame {
     /**
      * Creates new form UserInfo
      */
+    
+    Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
+    
+  
+   
+    
     public UserInfo() {
         initComponents();
     }
+    
+    
+    public UserInfo(String name) {
+        initComponents();
+        jTextField1.setText(name);
+    }
+    
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

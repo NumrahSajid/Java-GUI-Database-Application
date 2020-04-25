@@ -7,11 +7,21 @@ import javax.swing.JOptionPane;
  * and open the template in the editor.
  */
 
+  import java.sql.Connection;
+  import java.sql.PreparedStatement;
+  import java.sql.ResultSet;
+
 /**
  *
  * @author Nimra Sajid
  */
 public class DeleteUser extends javax.swing.JFrame {
+    
+    
+    Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
+    
 
     /**
      * Creates new form DeleteUser
@@ -172,7 +182,56 @@ public class DeleteUser extends javax.swing.JFrame {
     }//GEN-LAST:event_JBackButton3ActionPerformed
 
     private void UserDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserDeleteActionPerformed
-           if(jTextField1.getText().equals("") || jTextField2.getText().equals("") )
+
+        
+         String fullname = jTextField1.getText();
+        String IDNo = jTextField2.getText();
+    
+            
+       if(fullname.equals("")|| IDNo.equals("")){
+        JOptionPane.showMessageDialog(rootPane, "Some Data is Missing", "Please Fill all Boxes",1);
+          
+      } 
+      else {
+          
+        
+          
+      }
+    
+        
+     try {
+         con = DBConnection.getConnection();
+         pst = con.prepareStatement("delete from ADDUSER where fullname=? and IDNo=?");
+         pst.setString(1, fullname);
+         pst.setString(2, IDNo);
+         int rs = pst.executeUpdate();
+         
+       
+             
+        // TODO: make pop up box display correct details for confirmation
+         
+         
+        
+         int confirm = JOptionPane.showConfirmDialog(rootPane, "Confirm To Store", "Are You Sure?", JOptionPane.YES_NO_OPTION);
+         if (confirm ==0){
+         pst.execute();
+          JOptionPane.showMessageDialog(rootPane, "Data is Deleted Successfully", "Done...", 1);
+         }
+          
+       
+             
+        
+         
+         
+     } catch(Exception ex){
+         System.out.println(""+ex);
+     }
+    
+        
+        
+   
+        
+        if(jTextField1.getText().equals("") || jTextField2.getText().equals("") )
        {
            JOptionPane.showMessageDialog(null, "One of the required field is empty!", "Error", JOptionPane.ERROR_MESSAGE);
        }
@@ -180,12 +239,21 @@ public class DeleteUser extends javax.swing.JFrame {
          
             
      
-         JOptionPane.showMessageDialog(this,"User has been Deleted from Record");
+         JOptionPane.showMessageDialog(this,"User has been Deleted from Record"); 
         
         
                     
     }//GEN-LAST:event_UserDeleteActionPerformed
 
+    
+      public void clearFields(){
+            
+        jTextField1.setText("");
+        jTextField2.setText("");
+       
+            
+        }
+        
     /**
      * @param args the command line arguments
      */

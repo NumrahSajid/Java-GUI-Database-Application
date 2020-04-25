@@ -36,6 +36,7 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         Existing_Bikes = new javax.swing.JButton();
+        ManagerLogin = new javax.swing.JButton();
         P_Head = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Exit_Button = new javax.swing.JButton();
@@ -102,6 +103,14 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        ManagerLogin.setText("Login");
+        ManagerLogin.setToolTipText("");
+        ManagerLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManagerLoginActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout P_LeftLayout = new javax.swing.GroupLayout(P_Left);
         P_Left.setLayout(P_LeftLayout);
         P_LeftLayout.setHorizontalGroup(
@@ -109,7 +118,10 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(P_LeftLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(P_LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Manager, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(P_LeftLayout.createSequentialGroup()
+                        .addComponent(Manager, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ManagerLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(Add_User, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Remove_User, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Existing_Users, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -127,8 +139,10 @@ public class MainMenu extends javax.swing.JFrame {
             P_LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(P_LeftLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Manager, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
+                .addGroup(P_LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Manager, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ManagerLogin))
+                .addGap(1, 1, 1)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Add_User)
@@ -356,6 +370,15 @@ public class MainMenu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_UserProfileActionPerformed
 
+    private void ManagerLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManagerLoginActionPerformed
+
+             LoginManager1 Obj = new LoginManager1();
+       Obj.setVisible(true);
+        
+
+     
+    }//GEN-LAST:event_ManagerLoginActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -400,6 +423,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton Exit_Button;
     private javax.swing.JButton Loan_Bike;
     private javax.swing.JLabel Manager;
+    private javax.swing.JButton ManagerLogin;
     private javax.swing.JPanel P_Head;
     private javax.swing.JPanel P_Left;
     private javax.swing.JPanel P_Right;

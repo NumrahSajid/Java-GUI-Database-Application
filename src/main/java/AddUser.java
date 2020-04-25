@@ -7,17 +7,33 @@ import javax.swing.JOptionPane;
  * and open the template in the editor.
  */
 
+
+  import java.sql.Connection;
+  import java.sql.PreparedStatement;
+  import java.sql.ResultSet;
+
+
 /**
  *
  * @author Nimra Sajid
  */
 public class AddUser extends javax.swing.JFrame {
+    
+     Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
+    
 
     /**
      * Creates new form AddUser
      */
     public AddUser() {
         initComponents();
+    }
+    
+     public AddUser(String name) {
+        initComponents();
+        jTextField1.setText(name);
     }
 
     /**
@@ -227,6 +243,42 @@ public class AddUser extends javax.swing.JFrame {
 
     private void Add1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add1ActionPerformed
         
+        String name = jTextField1.getText();
+        String IDNo = jTextField2.getText();
+        String ContactNo = jTextField3.getText();
+        String Email = jTextField4.getText();
+        String Address = jTextField5.getText();
+        
+        
+        try {
+        
+        con = DBConnection.getConnection();
+        pst = con.prepareStatement("insert into ADDUSER (fullname,IDNo,ContactNo,Email,Address) values (?,?,?,?,?)");
+       
+         pst.setString(1, name);
+         pst.setString(2, IDNo);
+         pst.setString(3, ContactNo);
+         pst.setString(4, Email);
+         pst.setString(5, Address);
+         
+        
+         
+         int confirm = JOptionPane.showConfirmDialog(rootPane, "Confirm To Store", "Are You Sure?", JOptionPane.YES_NO_OPTION);
+         if (confirm ==0){
+         pst.execute();
+          JOptionPane.showMessageDialog(rootPane, "Data is Stored Successfully", "Done...", 1);
+         }
+          
+        } catch(Exception ex) {
+            System.out.println(""+ex);
+            
+        }
+        
+        
+      
+    
+        
+        
          if(jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField3.getText().equals("")|| jTextField5.getText().equals("") || jTextField4.getText().contains("@") && !jTextField4.getText().contains("@") )
        {
            JOptionPane.showMessageDialog(null, "One of the required field is empty!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -236,12 +288,25 @@ public class AddUser extends javax.swing.JFrame {
              
    
      
-         JOptionPane.showMessageDialog(this,"User is Added");
+         JOptionPane.showMessageDialog(this,"User is Added");  
+         
         
+      
         
     }//GEN-LAST:event_Add1ActionPerformed
 
   
+               public void clearFields(){
+            
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+            
+        }
+        
+         
     
     
 
