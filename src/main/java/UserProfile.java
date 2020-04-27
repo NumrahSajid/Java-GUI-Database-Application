@@ -4,18 +4,42 @@
  * and open the template in the editor.
  */
 
+  import java.sql.Connection;
+  import java.sql.PreparedStatement;
+  import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Nimra Sajid
  */
 public class UserProfile extends javax.swing.JFrame {
 
+       Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
+    
     /**
      * Creates new form UserProfile
      */
     public UserProfile() {
         initComponents();
     }
+
+    public UserProfile(String name) {
+        initComponents();
+        label1.setText(name);
+      
+    }
+    
+   
+   
+    
+    
+    
+     
+     
+     
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,6 +59,8 @@ public class UserProfile extends javax.swing.JFrame {
         ReturnBike = new javax.swing.JButton();
         RentedBikes = new javax.swing.JButton();
         ReturnedMovies = new javax.swing.JButton();
+        label1 = new java.awt.Label();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,6 +131,10 @@ public class UserProfile extends javax.swing.JFrame {
             }
         });
 
+        label1.setText("label1");
+
+        jLabel4.setText("Username:");
+
         javax.swing.GroupLayout P_LeftLayout = new javax.swing.GroupLayout(P_Left);
         P_Left.setLayout(P_LeftLayout);
         P_LeftLayout.setHorizontalGroup(
@@ -116,13 +146,22 @@ public class UserProfile extends javax.swing.JFrame {
                     .addComponent(RentBike, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ReturnBike, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(RentedBikes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ReturnedMovies, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
+                    .addComponent(ReturnedMovies, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                    .addGroup(P_LeftLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(label1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         P_LeftLayout.setVerticalGroup(
             P_LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(P_LeftLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, P_LeftLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(P_LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(label1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(Profile)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(RentBike)
@@ -132,7 +171,7 @@ public class UserProfile extends javax.swing.JFrame {
                 .addComponent(RentedBikes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ReturnedMovies)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addGap(43, 43, 43))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -159,7 +198,7 @@ public class UserProfile extends javax.swing.JFrame {
                 .addComponent(P_Head1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(P_Left, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(Back_Button)
                 .addContainerGap())
         );
@@ -173,26 +212,100 @@ public class UserProfile extends javax.swing.JFrame {
 
     private void ProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileActionPerformed
 
-         UserInfo Obj = new UserInfo();
-       Obj.setVisible(true);
+     
+          
+      //    UserInfo Obj = new UserInfo();
+      //     Obj.setVisible(true);
+       
+             
+         //   userinfo.setVisible(true);
+         //    setVisible(false);
+      
+         
         
         
     }//GEN-LAST:event_ProfileActionPerformed
 
     private void RentBikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RentBikeActionPerformed
-
+      
+        
+        /*
+        
+          String fullname =  label1.getText();
+      
+      
+  
+    
+        
+     try {
+         con = DBConnection.getConnection();
+         pst = con.prepareStatement("select * from ADDUSER where fullname=?");
+         pst.setString(1, fullname);
+         
+         rs = pst.executeQuery();
+         
+         if(rs.next()){
+             
+             
+             String dbfullname = rs.getString("fullname");
+             
+             
+            LoanBike1 loanbike1 = new LoanBike1(dbfullname);
+            
+                     
+             
+            
+          // UserProfile.setVisible(true);
+          // setVisible(false);
+          
+        
+             
+            loanbike1.setVisible(true);
+             setVisible(false);
+         }
+         
+         
+     } catch(Exception ex){
+         System.out.println(""+ex);
+     }
+        
+        */
+       
+     
+        
+      LoanBike1 Obj = new LoanBike1();
+      Obj.setVisible(true);
+        
+        
     }//GEN-LAST:event_RentBikeActionPerformed
 
     private void ReturnBikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnBikeActionPerformed
 
+      ReturnBike Obj = new ReturnBike();
+      Obj.setVisible(true);
+        
+        
+        
     }//GEN-LAST:event_ReturnBikeActionPerformed
 
     private void RentedBikesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RentedBikesActionPerformed
-        // TODO add your handling code here:
+   
+        
+      CurrentBikesRenting Obj = new CurrentBikesRenting();
+      Obj.setVisible(true);
+        
+        
+        
+        
     }//GEN-LAST:event_RentedBikesActionPerformed
 
     private void ReturnedMoviesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnedMoviesActionPerformed
 
+         CurrentBikesReturned Obj = new CurrentBikesReturned();
+      Obj.setVisible(true);
+        
+        
+        
     }//GEN-LAST:event_ReturnedMoviesActionPerformed
 
     /**
@@ -240,5 +353,7 @@ public class UserProfile extends javax.swing.JFrame {
     private javax.swing.JButton ReturnBike;
     private javax.swing.JButton ReturnedMovies;
     private javax.swing.JLabel heading;
+    private javax.swing.JLabel jLabel4;
+    private java.awt.Label label1;
     // End of variables declaration//GEN-END:variables
 }

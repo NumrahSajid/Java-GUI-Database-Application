@@ -1,14 +1,14 @@
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
-import javax.swing.JOptionPane;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+  import java.sql.Connection;
+  import java.sql.PreparedStatement;
+  import java.sql.ResultSet;
+  import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,6 +16,13 @@ import javax.swing.JOptionPane;
  */
 public class AddBike extends javax.swing.JFrame {
 
+    
+    Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
+    
+    
+    
     /**
      * Creates new form AddBike
      */
@@ -37,12 +44,18 @@ public class AddBike extends javax.swing.JFrame {
         Container = new javax.swing.JPanel();
         BikeID = new javax.swing.JLabel();
         ModelVersion = new javax.swing.JLabel();
-        Company = new javax.swing.JLabel();
-        DailyRate = new javax.swing.JLabel();
+        BikeType = new javax.swing.JLabel();
+        DatePurchased = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
+        CompanySupplier = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        Price = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
+        DailyRate = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -73,17 +86,23 @@ public class AddBike extends javax.swing.JFrame {
 
         Container.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
-        BikeID.setText("Bike ID");
+        BikeID.setText("Bike ID No:");
 
-        ModelVersion.setText("Model Version");
+        ModelVersion.setText("Model Version:");
 
-        Company.setText("Company");
+        BikeType.setText("Bike Type:");
 
-        DailyRate.setText("Daily Rate");
+        DatePurchased.setText("Date Purchased:");
 
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
+            }
+        });
+
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
             }
         });
 
@@ -92,6 +111,24 @@ public class AddBike extends javax.swing.JFrame {
                 jTextField4ActionPerformed(evt);
             }
         });
+
+        CompanySupplier.setText("Company Supplier:");
+
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
+
+        Price.setText("Price:");
+
+        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField7ActionPerformed(evt);
+            }
+        });
+
+        DailyRate.setText("Daily Rate:");
 
         javax.swing.GroupLayout ContainerLayout = new javax.swing.GroupLayout(Container);
         Container.setLayout(ContainerLayout);
@@ -102,14 +139,20 @@ public class AddBike extends javax.swing.JFrame {
                 .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BikeID)
                     .addComponent(ModelVersion)
-                    .addComponent(Company)
+                    .addComponent(BikeType)
+                    .addComponent(DatePurchased)
+                    .addComponent(CompanySupplier)
+                    .addComponent(Price)
                     .addComponent(DailyRate))
                 .addGap(27, 27, 27)
                 .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-                    .addComponent(jTextField2))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                    .addComponent(jTextField2)
+                    .addComponent(jTextField4)
+                    .addComponent(jTextField6)
+                    .addComponent(jTextField7))
                 .addGap(95, 95, 95))
         );
         ContainerLayout.setVerticalGroup(
@@ -127,13 +170,27 @@ public class AddBike extends javax.swing.JFrame {
                 .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(ContainerLayout.createSequentialGroup()
-                        .addComponent(Company)
+                        .addComponent(BikeType)
                         .addGap(5, 5, 5)))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(ContainerLayout.createSequentialGroup()
+                        .addComponent(CompanySupplier)
+                        .addGap(5, 5, 5)))
+                .addGap(18, 18, 18)
+                .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DatePurchased)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Price)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
                 .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DailyRate)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(84, 84, 84))
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jButton1.setText("Add");
@@ -156,17 +213,17 @@ public class AddBike extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addComponent(P_Head1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Container, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -176,27 +233,78 @@ public class AddBike extends javax.swing.JFrame {
                 .addComponent(P_Head1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap())
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
 
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jTextField5ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        String BikeIDNo = jTextField1.getText();
+        String ModelVersion = jTextField2.getText();
+        String BikeType = jTextField3.getText();
+        String CompanySupplier = jTextField4.getText();
+        String DatePurchased = jTextField5.getText();
+        String Price = jTextField6.getText();
+        String DailyRate = jTextField7.getText();
         
-        if(jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField3.getText().equals("")|| jTextField4.getText().equals("")  )
+
+        
+         try {
+        
+        con = DBConnection.getConnection();
+        pst = con.prepareStatement("insert into ADDBIKE (BikeIDNo,ModelVersion,BikeType,CompanySupplier,DatePurchased,Price,DailyRate) values (?,?,?,?,?,?,?)");
+       
+         pst.setString(1, BikeIDNo);
+         pst.setString(2, ModelVersion);
+         pst.setString(3, BikeType);
+         pst.setString(4, CompanySupplier);
+         pst.setString(5, DatePurchased);
+         pst.setString(6, Price);
+         pst.setString(7, DailyRate);
+         
+        
+         
+         int confirm = JOptionPane.showConfirmDialog(rootPane, "Confirm To Store", "Are You Sure?", JOptionPane.YES_NO_OPTION);
+         if (confirm ==0){
+         pst.execute();
+          JOptionPane.showMessageDialog(rootPane, "Data is Stored Successfully", "Done...", 1);
+         }
+          
+        } catch(Exception ex) {
+            System.out.println(""+ex);
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        if(jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField3.getText().equals("")|| jTextField5.getText().equals("")  )
        {
            JOptionPane.showMessageDialog(null, "One of the required field is empty!", "Error", JOptionPane.ERROR_MESSAGE);
        }
@@ -221,6 +329,18 @@ public class AddBike extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
+
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField7ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,11 +379,14 @@ public class AddBike extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BikeID;
-    private javax.swing.JLabel Company;
+    private javax.swing.JLabel BikeType;
+    private javax.swing.JLabel CompanySupplier;
     private javax.swing.JPanel Container;
     private javax.swing.JLabel DailyRate;
+    private javax.swing.JLabel DatePurchased;
     private javax.swing.JLabel ModelVersion;
     private javax.swing.JPanel P_Head1;
+    private javax.swing.JLabel Price;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -271,5 +394,8 @@ public class AddBike extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }

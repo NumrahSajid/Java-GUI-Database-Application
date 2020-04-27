@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  *
  * @author Nimra Sajid
  */
-public class ExistingBikes extends javax.swing.JFrame {
+public class CurrentBikesRenting extends javax.swing.JFrame {
 
          Connection con;
          PreparedStatement pst;
@@ -25,7 +25,7 @@ public class ExistingBikes extends javax.swing.JFrame {
     /**
      * Creates new form ExistingUsers
      */
-    public ExistingBikes() {
+    public CurrentBikesRenting() {
         initComponents();
     }
     
@@ -60,7 +60,7 @@ public class ExistingBikes extends javax.swing.JFrame {
 
         UsersRecord.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         UsersRecord.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        UsersRecord.setText("Existing Bikes Record");
+        UsersRecord.setText("Current Bikes Being Rented");
 
         javax.swing.GroupLayout Panel2Layout = new javax.swing.GroupLayout(Panel2);
         Panel2.setLayout(Panel2Layout);
@@ -158,7 +158,7 @@ public class ExistingBikes extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         
-        ViewBikeRecord vur = new ViewBikeRecord();
+        ViewBikeRentingRecord vur = new ViewBikeRentingRecord();
         vur.view(jTable1);
         
         

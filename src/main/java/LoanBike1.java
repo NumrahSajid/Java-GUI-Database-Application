@@ -1,4 +1,11 @@
 
+import java.sql.Statement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
+
 import javax.swing.JOptionPane;
 
 /*
@@ -11,14 +18,71 @@ import javax.swing.JOptionPane;
  *
  * @author Nimra Sajid
  */
-public class LoanBike extends javax.swing.JFrame {
+public class LoanBike1 extends javax.swing.JFrame {
+    
+    
+    Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
 
     /**
      * Creates new form LoanBike
      */
-    public LoanBike() {
+    public LoanBike1() {
         initComponents();
+        userLoanBike();
     }
+    
+    
+      public LoanBike1(String name) {
+        initComponents();
+        jTextField1.setText(name);
+      
+    }  
+    
+    
+   
+    
+    public void userLoanBike()
+    {
+        try{
+              con = DBConnection.getConnection();
+        
+              String selectQuery="select BikeIDNo from AddBike ";
+              Statement stat = con.createStatement();
+              ResultSet rs = stat.executeQuery(selectQuery);
+      
+              while(rs.next())
+              {
+                  jComboBox1.addItem(Integer.toString(rs.getInt("BikeIDNo")));
+                
+               
+                  
+                  
+              }
+              
+
+          
+        }
+       catch(Exception ex){
+         System.out.println(""+ex);
+    }
+        
+        
+    }     
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,21 +102,17 @@ public class LoanBike extends javax.swing.JFrame {
         ModelVersion = new javax.swing.JLabel();
         HireDate = new javax.swing.JLabel();
         HireRate = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
-        DailyRate = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        LoanLenght = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
         AmountOfDays = new javax.swing.JLabel();
         UserIDNo = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
         Name = new javax.swing.JLabel();
-        Calculate = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
+        Add = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,19 +159,19 @@ public class LoanBike extends javax.swing.JFrame {
 
         ModelVersion.setText("Model Version");
 
-        HireDate.setText("Hire Date");
+        HireDate.setText("Date of Hiring");
 
         HireRate.setText("Hire Rate");
-
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
 
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
+            }
+        });
+
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
             }
         });
 
@@ -127,33 +187,38 @@ public class LoanBike extends javax.swing.JFrame {
             }
         });
 
-        DailyRate.setText("Daily Rate");
-
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
-            }
-        });
-
-        LoanLenght.setText("No of Days");
-
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
-            }
-        });
-
-        AmountOfDays.setText("AmountOfDays");
+        AmountOfDays.setText("Amount of Days");
 
         UserIDNo.setText("User ID No.");
+
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+
+        Name.setText("Name");
+
+        jComboBox1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                jComboBox1PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-
-        Name.setText("Name");
 
         javax.swing.GroupLayout ContainerLayout = new javax.swing.GroupLayout(Container);
         Container.setLayout(ContainerLayout);
@@ -166,28 +231,24 @@ public class LoanBike extends javax.swing.JFrame {
                     .addComponent(ModelVersion)
                     .addComponent(HireDate)
                     .addComponent(HireRate)
-                    .addComponent(DailyRate)
-                    .addComponent(LoanLenght)
                     .addComponent(AmountOfDays)
                     .addComponent(UserIDNo)
                     .addComponent(Name))
                 .addGap(27, 27, 27)
                 .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
                     .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
                     .addComponent(jTextField4)
                     .addComponent(jTextField7)
-                    .addComponent(jTextField8)
-                    .addComponent(jTextField9)
                     .addComponent(jTextField2)
+                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextField1))
                 .addGap(95, 95, 95))
         );
         ContainerLayout.setVerticalGroup(
             ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContainerLayout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Name)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -198,40 +259,30 @@ public class LoanBike extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BikeID)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ModelVersion)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(HireRate))
+                .addGap(18, 18, 18)
+                .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(HireDate))
                 .addGap(17, 17, 17)
-                .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(ContainerLayout.createSequentialGroup()
-                        .addComponent(HireDate)
-                        .addGap(5, 5, 5)))
-                .addGap(18, 18, 18)
                 .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(HireRate)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(DailyRate)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LoanLenght)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AmountOfDays)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22))
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AmountOfDays))
+                .addGap(102, 102, 102))
         );
 
-        Calculate.setText("Calculate Rate");
-        Calculate.addActionListener(new java.awt.event.ActionListener() {
+        Add.setText("Add");
+        Add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CalculateActionPerformed(evt);
+                AddActionPerformed(evt);
             }
         });
 
@@ -247,7 +298,7 @@ public class LoanBike extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Check, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(Calculate)
+                        .addComponent(Add)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBackButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -263,7 +314,7 @@ public class LoanBike extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Check)
                     .addComponent(jBackButton4)
-                    .addComponent(Calculate))
+                    .addComponent(Add))
                 .addGap(6, 6, 6))
         );
 
@@ -272,14 +323,13 @@ public class LoanBike extends javax.swing.JFrame {
 
     private void CheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckActionPerformed
 
-             if(jTextField1.getText().equals("") || jTextField2.getText().equals("")
-                     || jTextField3.getText().equals("")
+             if( jTextField2.getText().equals("")
+                 //    || jTextField3.getText().equals("")
                      || jTextField4.getText().equals("")
                      || jTextField5.getText().equals("")
                      || jTextField6.getText().equals("")
                      || jTextField7.getText().equals("")
-                     || jTextField8.getText().equals("")
-                     || jTextField9.getText().equals("")
+                   
                      )
        {
            JOptionPane.showMessageDialog(null, "One of the required field is empty!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -311,25 +361,120 @@ public class LoanBike extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField7ActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
+   
+        
+     String name = jTextField1.getText();
+     String UserIDNo = jTextField2.getText();
+     String BikeIDNo = jComboBox1.getSelectedItem().toString();
+     String ModelVersion = jTextField4.getText();
+     String HireRate = jTextField5.getText();
+     String HireDate = jTextField6.getText();
+     String AmountOfDays = jTextField7.getText();
+     
+      
+      
+        try {
+        
+        con = DBConnection.getConnection();
+        pst = con.prepareStatement("insert into USERLOANBIKE (CustomerName,CustomerID,BikeIDNo,ModelVersion,HireRate, DateHired,AmountOfDays) values (?,?,?,?,?,?,?)");
+       
+         pst.setString(1, name);
+         pst.setString(2, UserIDNo);
+         pst.setString(3, BikeIDNo);
+         pst.setString(4, ModelVersion);
+         pst.setString(5, HireRate);
+         pst.setString(6, HireDate);
+         pst.setString(7, AmountOfDays);
+         
+         
+            int confirm = JOptionPane.showConfirmDialog(rootPane, "Confirm To Store", "Are You Sure?", JOptionPane.YES_NO_OPTION);
+         if (confirm ==0){
+         pst.execute();
+          JOptionPane.showMessageDialog(rootPane, "Data is Stored Successfully", "Done...", 1);
+         }
+          
+        } catch(Exception ex) {
+            System.out.println(""+ex);
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_AddActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void CalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalculateActionPerformed
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CalculateActionPerformed
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jComboBox1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox1PopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        
+  /*     String tmp = (String)jComboBox1.getSelectedItem();
+     //   String sql = "select * From AddBike where BikeIDNo?";  
+         String selectQuery="select * from AddBike where BikeIDNo=?";
+      try {
+        
+        con = DBConnection.getConnection();
+        pst = con.prepareStatement(selectQuery); 
+        pst.setString(1,tmp);
+ 
+        ResultSet rs =  pst.executeQuery(selectQuery);
+        
+        if(rs.next()){
+            
+            String add1 = rs.getString("ModelVersion");
+            jTextField4.setText(add1);
+        }
+      
+      
+        }
+      
+      catch(Exception ex){
+         System.out.println(""+ex);
+     }    
+        
+        */
+        
+      
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jComboBox1PopupMenuWillBecomeInvisible
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_jTextField5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -367,29 +512,25 @@ public class LoanBike extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Add;
     private javax.swing.JLabel AmountOfDays;
     private javax.swing.JLabel BikeID;
-    private javax.swing.JButton Calculate;
     private javax.swing.JButton Check;
     private javax.swing.JPanel Container;
-    private javax.swing.JLabel DailyRate;
     private javax.swing.JLabel HireDate;
     private javax.swing.JLabel HireRate;
-    private javax.swing.JLabel LoanLenght;
     private javax.swing.JLabel ModelVersion;
     private javax.swing.JLabel Name;
     private javax.swing.JPanel P_Head1;
     private javax.swing.JLabel UserIDNo;
     private javax.swing.JButton jBackButton4;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }

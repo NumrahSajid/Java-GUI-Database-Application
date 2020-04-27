@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  *
  * @author Nimra Sajid
  */
-public class LoginManager1 extends javax.swing.JFrame {
+public class LoginUser extends javax.swing.JFrame {
          Connection con;
          PreparedStatement pst;
          ResultSet rs;
@@ -21,9 +21,12 @@ public class LoginManager1 extends javax.swing.JFrame {
     /**
      * Creates new form LoginManager1
      */
-    public LoginManager1() {
+    public LoginUser() {
         initComponents();
     }
+    
+
+     
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,7 +40,7 @@ public class LoginManager1 extends javax.swing.JFrame {
         heading = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         Name = new javax.swing.JLabel();
-        Password = new javax.swing.JLabel();
+        IDNo = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
         Back_Button = new javax.swing.JButton();
         Login = new javax.swing.JButton();
@@ -46,7 +49,7 @@ public class LoginManager1 extends javax.swing.JFrame {
 
         heading.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         heading.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        heading.setText("Manager Login");
+        heading.setText("User Login");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,7 +59,7 @@ public class LoginManager1 extends javax.swing.JFrame {
 
         Name.setText("Username:");
 
-        Password.setText("Password:");
+        IDNo.setText("ID No:");
 
         Back_Button.setText("Back");
         Back_Button.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +87,7 @@ public class LoginManager1 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Name)
-                    .addComponent(Password))
+                    .addComponent(IDNo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextField1)
@@ -108,7 +111,7 @@ public class LoginManager1 extends javax.swing.JFrame {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Password)
+                    .addComponent(IDNo)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -126,10 +129,10 @@ public class LoginManager1 extends javax.swing.JFrame {
 
     private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed
 
-      String username =  jTextField1.getText();
-      String password = jPasswordField1.getText();
+      String fullname =  jTextField1.getText();
+      String IDNo = jPasswordField1.getText();
       
-      if(username.equals("")|| password.equals("")){
+      if(fullname.equals("")|| IDNo.equals("")){
         JOptionPane.showMessageDialog(rootPane, "Some Data is Missing", "Please Fill all Boxes",1);
           
       } 
@@ -142,34 +145,39 @@ public class LoginManager1 extends javax.swing.JFrame {
         
      try {
          con = DBConnection.getConnection();
-         pst = con.prepareStatement("select * from MANAGERLOGIN where username=? and password=?");
-         pst.setString(1, username);
-         pst.setString(2, password);
+         pst = con.prepareStatement("select * from ADDUSER where fullname=? and IDNo=?");
+         pst.setString(1, fullname);
+         pst.setString(2, IDNo);
          rs = pst.executeQuery();
          
          if(rs.next()){
              
              
-             String dbusername = rs.getString("username");
-             String dbpassword = rs.getString("password");
+             String dbfullname = rs.getString("fullname");
+             String dbidno = rs.getString("IDNo");
              
-             LoginManager loginmanager = new LoginManager(dbusername + dbpassword);
+            UserProfile userprofile = new UserProfile(dbfullname + "\n\t" + dbidno);
+            
+                     
              
-           if(username.equals(dbusername)!= password.equals(dbpassword)) {
+            
+             
+           if(fullname.equals(dbfullname)!= IDNo.equals(dbidno)) {
                
                JOptionPane.showMessageDialog(rootPane, "Invalid Login Details");
            }
             
             else {
                 
-                JOptionPane.showMessageDialog(rootPane, "Welcome Manager");
+                JOptionPane.showMessageDialog(rootPane, "Welcome User");
             }
              
-                     
+            
+          // UserProfile.setVisible(true);
+          // setVisible(false);
              
-             loginmanager.setVisible(true);
+            userprofile.setVisible(true);
              setVisible(false);
-             
          }
          
          
@@ -225,9 +233,9 @@ public class LoginManager1 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back_Button;
+    private javax.swing.JLabel IDNo;
     private javax.swing.JButton Login;
     private javax.swing.JLabel Name;
-    private javax.swing.JLabel Password;
     private javax.swing.JLabel heading;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;

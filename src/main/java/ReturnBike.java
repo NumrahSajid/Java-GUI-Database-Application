@@ -1,5 +1,10 @@
 
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import net.proteanit.sql.DbUtils;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,13 +17,57 @@ import javax.swing.JOptionPane;
  * @author Nimra Sajid
  */
 public class ReturnBike extends javax.swing.JFrame {
+    
+     Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
 
     /**
      * Creates new form ReturnBike
      */
     public ReturnBike() {
         initComponents();
+        userReturnBike();
     }
+    
+    
+    
+    
+    public void userReturnBike()
+    {
+        try{
+              con = DBConnection.getConnection();
+        
+              String selectQuery="select BikeIDNo from AddBike ";
+              Statement stat = con.createStatement();
+              ResultSet rs = stat.executeQuery(selectQuery);
+      
+              while(rs.next())
+              {
+                  jComboBox1.addItem(Integer.toString(rs.getInt("BikeIDNo")));
+                
+               
+                  
+                  
+              }
+              
+
+          
+        }
+       catch(Exception ex){
+         System.out.println(""+ex);
+    }
+        
+        
+    }     
+    
+    
+    
+    
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,14 +83,14 @@ public class ReturnBike extends javax.swing.JFrame {
         Container = new javax.swing.JPanel();
         BikeID = new javax.swing.JLabel();
         ReturnDate = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
-        UserDelete = new javax.swing.JButton();
+        UserReturn = new javax.swing.JButton();
         JBackButton3 = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
         UserIDNo = new javax.swing.JLabel();
         Name = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,10 +129,10 @@ public class ReturnBike extends javax.swing.JFrame {
             }
         });
 
-        UserDelete.setText("Return");
-        UserDelete.addActionListener(new java.awt.event.ActionListener() {
+        UserReturn.setText("Return Bike");
+        UserReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UserDeleteActionPerformed(evt);
+                UserReturnActionPerformed(evt);
             }
         });
 
@@ -98,16 +147,25 @@ public class ReturnBike extends javax.swing.JFrame {
 
         Name.setText("Name");
 
+        jComboBox1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                jComboBox1PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ContainerLayout = new javax.swing.GroupLayout(Container);
         Container.setLayout(ContainerLayout);
         ContainerLayout.setHorizontalGroup(
             ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ContainerLayout.createSequentialGroup()
-                .addGap(192, 192, 192)
-                .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(UserDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JBackButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContainerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,15 +176,24 @@ public class ReturnBike extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTextField1)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
                     .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(95, 95, 95))
+            .addGroup(ContainerLayout.createSequentialGroup()
+                .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ContainerLayout.createSequentialGroup()
+                        .addGap(192, 192, 192)
+                        .addComponent(JBackButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ContainerLayout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(UserReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ContainerLayout.setVerticalGroup(
             ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContainerLayout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Name)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -137,13 +204,13 @@ public class ReturnBike extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BikeID)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ReturnDate)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
-                .addComponent(UserDelete)
+                .addComponent(UserReturn)
                 .addGap(18, 18, 18)
                 .addComponent(JBackButton3)
                 .addGap(33, 33, 33))
@@ -167,7 +234,7 @@ public class ReturnBike extends javax.swing.JFrame {
                 .addComponent(P_Head1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -181,9 +248,57 @@ public class ReturnBike extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_JBackButton3ActionPerformed
 
-    private void UserDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserDeleteActionPerformed
+    private void UserReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserReturnActionPerformed
+
+        
+             String name = jTextField1.getText();
+             String UserIDNo = jTextField2.getText();
+             String BikeIDNo = jComboBox1.getSelectedItem().toString();
+             String ReturnDate = jTextField4.getText();
+        
+        
+         
+      
+        try {
+        
+        con = DBConnection.getConnection();
+        pst = con.prepareStatement("insert into USERRETURNBIKE (CustomerName,CustomerID,BikeIDNo,ReturnDate) values (?,?,?,?)");
        
-           if(jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField3.getText().equals("") || jTextField4.getText().equals("")
+         pst.setString(1, name);
+         pst.setString(2, UserIDNo);
+         pst.setString(3, BikeIDNo);
+         pst.setString(4, ReturnDate);
+        
+         
+         
+            int confirm = JOptionPane.showConfirmDialog(rootPane, "Confirm To Store", "Are You Sure?", JOptionPane.YES_NO_OPTION);
+         if (confirm ==0){
+         pst.execute();
+          JOptionPane.showMessageDialog(rootPane, "Data is Stored Successfully", "Done...", 1);
+         }
+          
+        } catch(Exception ex) {
+            System.out.println(""+ex);
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+           if(jTextField1.getText().equals("") || jTextField2.getText().equals("") || jComboBox1.getSelectedItem().equals("") || jTextField4.getText().equals("")
         
                      )
        {
@@ -198,7 +313,41 @@ public class ReturnBike extends javax.swing.JFrame {
         
         
         
-    }//GEN-LAST:event_UserDeleteActionPerformed
+    }//GEN-LAST:event_UserReturnActionPerformed
+
+    private void jComboBox1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox1PopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+
+        /*     String tmp = (String)jComboBox1.getSelectedItem();
+        //   String sql = "select * From AddBike where BikeIDNo?";
+        String selectQuery="select * from AddBike where BikeIDNo=?";
+        try {
+
+            con = DBConnection.getConnection();
+            pst = con.prepareStatement(selectQuery);
+            pst.setString(1,tmp);
+
+            ResultSet rs =  pst.executeQuery(selectQuery);
+
+            if(rs.next()){
+
+                String add1 = rs.getString("ModelVersion");
+                jTextField4.setText(add1);
+            }
+
+        }
+
+        catch(Exception ex){
+            System.out.println(""+ex);
+        }
+
+        */
+
+    }//GEN-LAST:event_jComboBox1PopupMenuWillBecomeInvisible
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,12 +391,12 @@ public class ReturnBike extends javax.swing.JFrame {
     private javax.swing.JLabel Name;
     private javax.swing.JPanel P_Head1;
     private javax.swing.JLabel ReturnDate;
-    private javax.swing.JButton UserDelete;
     private javax.swing.JLabel UserIDNo;
+    private javax.swing.JButton UserReturn;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

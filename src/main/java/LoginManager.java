@@ -40,6 +40,16 @@ public class LoginManager extends javax.swing.JFrame {
         AddUser = new javax.swing.JButton();
         RemoveUser = new javax.swing.JButton();
         ViewExistingUsers = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        Add_Bike = new javax.swing.JButton();
+        Remove_Bike = new javax.swing.JButton();
+        Existing_Bikes = new javax.swing.JButton();
+        BikeLoans = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        BikesReturned = new javax.swing.JButton();
+        UpdateExistingUsers1 = new javax.swing.JButton();
+        UpdateExistingBikes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,6 +106,61 @@ public class LoginManager extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setText("User Information:");
+
+        jLabel2.setText("Bike Rental Information:");
+
+        Add_Bike.setText("Add Bike");
+        Add_Bike.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Add_BikeActionPerformed(evt);
+            }
+        });
+
+        Remove_Bike.setText("Remove Bike");
+        Remove_Bike.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Remove_BikeActionPerformed(evt);
+            }
+        });
+
+        Existing_Bikes.setText("View Existing Bikes");
+        Existing_Bikes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Existing_BikesActionPerformed(evt);
+            }
+        });
+
+        BikeLoans.setText("Current Bikes on Loan");
+        BikeLoans.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BikeLoansActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("    View Current Bike Loans and Returns:");
+
+        BikesReturned.setText(" Bikes Returned");
+        BikesReturned.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BikesReturnedActionPerformed(evt);
+            }
+        });
+
+        UpdateExistingUsers1.setText("Update Existing Users");
+        UpdateExistingUsers1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateExistingUsers1ActionPerformed(evt);
+            }
+        });
+
+        UpdateExistingBikes.setText("Update Existing Bikes");
+        UpdateExistingBikes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateExistingBikesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout P_LeftLayout = new javax.swing.GroupLayout(P_Left);
         P_Left.setLayout(P_LeftLayout);
         P_LeftLayout.setHorizontalGroup(
@@ -103,21 +168,64 @@ public class LoginManager extends javax.swing.JFrame {
             .addGroup(P_LeftLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(P_LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AddUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(RemoveUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ViewExistingUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, P_LeftLayout.createSequentialGroup()
+                        .addGap(0, 69, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(67, 67, 67))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, P_LeftLayout.createSequentialGroup()
+                        .addGroup(P_LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(AddUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(RemoveUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ViewExistingUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, P_LeftLayout.createSequentialGroup()
+                        .addComponent(UpdateExistingUsers1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, P_LeftLayout.createSequentialGroup()
+                        .addGroup(P_LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(UpdateExistingBikes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BikesReturned, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BikeLoans, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(P_LeftLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel2)
+                                .addGap(40, 40, 40))
+                            .addComponent(Add_Bike, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Remove_Bike, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Existing_Bikes, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         P_LeftLayout.setVerticalGroup(
             P_LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(P_LeftLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(24, 24, 24)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(AddUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(RemoveUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ViewExistingUsers)
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(UpdateExistingUsers1)
+                .addGap(23, 23, 23)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Add_Bike)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Remove_Bike)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Existing_Bikes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(UpdateExistingBikes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BikeLoans)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BikesReturned)
+                .addGap(10, 10, 10))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -144,7 +252,7 @@ public class LoginManager extends javax.swing.JFrame {
                 .addComponent(P_Head1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(P_Left, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addComponent(Back_Button)
                 .addContainerGap())
         );
@@ -177,6 +285,60 @@ public class LoginManager extends javax.swing.JFrame {
         Obj.setVisible(true);
         
     }//GEN-LAST:event_ViewExistingUsersActionPerformed
+
+    private void Add_BikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add_BikeActionPerformed
+
+        AddBike Obj = new AddBike();
+        Obj.setVisible(true);
+
+    }//GEN-LAST:event_Add_BikeActionPerformed
+
+    private void Remove_BikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Remove_BikeActionPerformed
+        DeleteBike Obj = new DeleteBike();
+        Obj.setVisible(true);
+    }//GEN-LAST:event_Remove_BikeActionPerformed
+
+    private void Existing_BikesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Existing_BikesActionPerformed
+        ExistingBikes Obj = new ExistingBikes();
+        Obj.setVisible(true);
+    }//GEN-LAST:event_Existing_BikesActionPerformed
+
+    private void BikeLoansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BikeLoansActionPerformed
+      
+         CurrentBikesRenting Obj = new CurrentBikesRenting();
+        Obj.setVisible(true);
+        
+        
+        
+    }//GEN-LAST:event_BikeLoansActionPerformed
+
+    private void BikesReturnedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BikesReturnedActionPerformed
+   
+        
+         CurrentBikesReturned Obj = new CurrentBikesReturned();
+        Obj.setVisible(true);
+        
+        
+        
+        
+    }//GEN-LAST:event_BikesReturnedActionPerformed
+
+    private void UpdateExistingUsers1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateExistingUsers1ActionPerformed
+       
+         UpdateExistingUsers Obj = new UpdateExistingUsers();
+        Obj.setVisible(true);
+        
+        
+    }//GEN-LAST:event_UpdateExistingUsers1ActionPerformed
+
+    private void UpdateExistingBikesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateExistingBikesActionPerformed
+        
+          UpdateExistingBikes Obj = new UpdateExistingBikes();
+        Obj.setVisible(true);
+        
+        
+        
+    }//GEN-LAST:event_UpdateExistingBikesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,11 +377,21 @@ public class LoginManager extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddUser;
+    private javax.swing.JButton Add_Bike;
     private javax.swing.JButton Back_Button;
+    private javax.swing.JButton BikeLoans;
+    private javax.swing.JButton BikesReturned;
+    private javax.swing.JButton Existing_Bikes;
     private javax.swing.JPanel P_Head1;
     private javax.swing.JPanel P_Left;
     private javax.swing.JButton RemoveUser;
+    private javax.swing.JButton Remove_Bike;
+    private javax.swing.JButton UpdateExistingBikes;
+    private javax.swing.JButton UpdateExistingUsers1;
     private javax.swing.JButton ViewExistingUsers;
     private javax.swing.JLabel heading;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }
